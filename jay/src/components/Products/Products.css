@@ -1,0 +1,20 @@
+.products{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+  
+}
+
+@media(min-width: 700px) {
+  .products{
+    padding: 2em 2em!important;
+    margin: auto;
+  }
+} 
+@media (max-width:900px){
+  .products{
+    margin-top: 80px;
+  }
+}
