@@ -24,7 +24,7 @@ const EbookCard = ({ url, name, id, user }) => {
       const response = await fetch(`/order/coins/get?user=${user}`);
       const data = await response.json();
       setCoinBalance(Number(data.coins));
-      alert(coinBalance)
+     
     } catch (error) {
       console.error(error);
     }

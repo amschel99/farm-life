@@ -18,7 +18,7 @@ const Ebooks = ({ user }) => {
         console.log(error.response.data);
       });
 
-    axios.get('/order/coins/get', { params: { user: user } })
+    axios.get(`/order/coins/get?user=${user}`)
       .then((response) => {
         setCoins(response.data.coins);
       })

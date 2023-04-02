@@ -18,7 +18,7 @@ import {useNavigate} from 'react-router-dom'
       async function fetchCoins() {
         const response = await fetch(`/order/coins/get?user=${user}`);
         const data = await response.json();
-        alert(JSON.stringify(data))
+     
         setCoins(Number(data.coins));
       }
   
