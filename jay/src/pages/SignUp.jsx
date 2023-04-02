@@ -32,14 +32,16 @@ const SignUp = ({user,setUser}) => {
 <Button variant='contained' sx={{backgroundColor:'green'}} onClick={
   async (e)=>{
     try{
-   const res=   await fetch('/signup',{
+   const res=   await fetch('/order/new/user',{
         method:'POST',
-        body:JSON.stringify({email,coins:0}),
-        'content-type':'application/json'
+        body:JSON.stringify({user:email}),
+      headers:{
+        'Content-Type':'application/json'
+      }
 
       })
      
-      if(res.status!==200){
+      if(res.status!==201){
         return alert(`something went wrong!`)
       }
       else{

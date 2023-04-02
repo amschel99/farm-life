@@ -1,8 +1,9 @@
 const OrderModule= require('../models/orderModel')
 const postOrder= async (req,res)=>{
-    const {items,totalPrice}=req.body
+    const {user,items,price}=req.body
+    console.log(req.body)
     try{
-const order=await OrderModule.create({items,totalPrice})
+const order=await OrderModule.create({user,items,price})
 res.json(order)
     }
     catch(e){

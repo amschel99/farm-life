@@ -1,0 +1,27 @@
+{
+    "name": "agribooks",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "cd ./jay-backend &&  npm run dev",
+        "build": "cd ./jay && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/amschel99/agribooks.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/amschel99/agribooks/issues"
+    },
+    "homepage": "https://github.com/amschel99/agribooks#readme",
+    "dependencies": {
+        "file-saver": "^2.0.5",
+        "jspdf": "^2.5.1",
+        "moment": "^2.29.4",
+        "pdfmake": "^0.2.7"
+    }
+}

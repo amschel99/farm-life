@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import { Stack, Button, TextField, Typography, Alert ,Grid} from "@mui/material";
 const Admin = () => {
   const fileInputRef = React.useRef(null);
@@ -135,6 +136,7 @@ const showFile=()=>{
   Upload
 </Button>
 </Grid>
+<Button component={Link} to='/report'>Download report</Button>
       </Stack>
     </>
   );

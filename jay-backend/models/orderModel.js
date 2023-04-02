@@ -3,17 +3,27 @@ const { Schema } = require('mongoose');
 
 const ItemSchema = new Schema({
   name: { type: String, required: true },
-  price: { type: Number, required: true },
-  quantity: { type: Number, required: true }
+  price: { type: String, required: true },
+  quantity: { type: String },
+  image: { type: String }
 });
 
 const OrderSchema = new Schema({
-  items: { type: [ItemSchema], required: true },
-  totalPrice: { type: Number, required: true },
-  status: {
+  items: {
+    type: [{
+      name: { type: String, required: true },
+      price: { type: String, required: true },
+      quantity: { type: String },
+      image: { type: String }
+    }]
+  },
+  user: {
     type: String,
-    enum: ['pending', 'received', 'completed'],
-    default: 'pending'
+    required: [true, "required"]
+  },
+  price: {
+    type: String,
+    required: [true, 'required']
   },
   date: { type: Date, default: Date.now }
 }, { timestamps: true });

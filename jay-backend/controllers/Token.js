@@ -61,7 +61,7 @@ const stkPush=async(req,res)=>{
     PartyA: `254${phone}`,//USERS PHONE NUMBER
     PartyB: shortCode,// OUR PAY BILL
     PhoneNumber: `254${phone}`,//USERS PHONE NUMBER
-    CallBackURL: "https://motapay.onrender.com/callback",
+    CallBackURL: "https://4fd7-102-68-78-191.in.ngrok.io/callback",
     AccountReference: `Mota Automobiles`,
     TransactionDesc: "mota platform subscription",
   }
@@ -81,6 +81,8 @@ const stkPush=async(req,res)=>{
 }
 const callBack=async(req,res,next)=>{
    //here mpesa sends the results of the transaction in req.body
+if(req.body){
+
 
     const  callbackData =req.body;
     console.log( callbackData);
@@ -103,12 +105,16 @@ try{
  req.transaction={trnx_id,phone,amount}
  next()
 
+
 }
+
 catch(error){
  res.status(500).json(error.message)
 }
-  
-
+}
+else{
+  res.json('errr')
+}
 
 
 }
@@ -116,6 +122,9 @@ const sendTransactionDetails= async (req,res)=>{
 try{
 
 const {trnx_id,amount,phone}=req.transaction
+if(!req.transaction){
+  res.status(403).json(`no response yet`)
+}
 res.json({trnx_id,amount,phone})
 }
 catch(e){

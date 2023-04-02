@@ -8,6 +8,8 @@ import Ebooks from './pages/Ebooks'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
+import Success from './pages/Success'
+import DownloadReport from './components/DownloadReport'
 
 import SingleProductPage from './pages/SingleProductPage'
 const App = () => {
@@ -25,11 +27,13 @@ const App = () => {
 
       <Route  path='/product/:id' element={<SingleProductPage/>}></Route>
     </Route>
-    <Route  path='/checkout' element={<Mpesa/>}></Route>
-    <Route path='/ebooks' element={<Ebooks/>}></Route>
+    <Route  path='/checkout' element={<Mpesa user={user}/>}></Route>
+    <Route path='/ebooks' element={<Ebooks user={user}/>}></Route>
     <Route path='/login' element={<Login user={user} setUser={setUser}/>}></Route>
     <Route path='/signup' element={<SignUp user={user} setUser={setUser}/>}></Route>
     <Route path='/admin' element={<Admin/>}></Route>
+    <Route path='/report' element={<DownloadReport/>}></Route>
+    <Route path='/success' element={<Success user={user}/>}></Route>
    </Routes>
    </BrowserRouter>
    

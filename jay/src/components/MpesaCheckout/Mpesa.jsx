@@ -3,25 +3,28 @@ import {Box,Stack,TextField,Button, Typography,Alert} from "@mui/material"
 import { itemRemoved,incrementQuantity,decrementQuantity,setQuantity } from '../../feautures/cart/cartSlice';
 import {  useDispatch, useSelector} from 'react-redux'
 import PayIcon from "@mui/icons-material/Payment"
- const MpesaCheckout= ()=>{
+import {useNavigate} from 'react-router-dom'
+ const MpesaCheckout= ({user})=>{
+  const [congrats,setCongrats]=React.useState(false)
     const cart= useSelector((state)=>state.cart)
   const{totalItems, totalPrice,items}=cart
+  const navigate= useNavigate()
   const [trnx,setTrnx]=React.useState(null)
     const[mpesaNumber,setMpesaNumber]=React.useState(null)
-    const getTrnxDetails= async ()=>{
-        try{
-const res=await fetch("/stk/details")
-const data= await res.json()
-if(data){
+ 
+    const [coins, setCoins] = React.useState();
+
+    React.useEffect(() => {
+      async function fetchCoins() {
+        const response = await fetch(`/order/coins/get?user=${user}`);
+        const data = await response.json();
+        alert(JSON.stringify(data))
+        setCoins(Number(data.coins));
+      }
+  
+      fetchCoins();
+    }, []);
     
-}
-setTrnx(data)
-alert(`payment was a success ${JSON.stringify(data)}`)
-        }
-        catch(e){
-alert(e.message)
-        }
-    }
     const isValidMpesaNumber = (mpesaNumber) => {
         const mpesaRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g; // Regex for valid MPESA numbers
         return mpesaRegex.test(mpesaNumber);
@@ -48,7 +51,7 @@ alert(e.message)
         <Typography sx={{textAlign:'center'}} variant="h3">Checkout Via Mpesa</Typography>
        
         <Stack direction="column">
-
+{congrats && <Alert severity='success'>Congrats, you have earned 5 coins</Alert>}
      
     <TextField
     sx={{marginTop:'100px', marginLeft: '5px',
@@ -76,14 +79,28 @@ body:JSON.stringify({phone:mpesaNumber,amount:totalPrice})
 
 if(res.status===200){
  alert(`check your phone for an mpesa prompt`)
- if(!trnx){
+const dataToSend={items,user,price:totalPrice}
+alert(JSON.stringify(dataToSend))
+await fetch("/order/create",{
+  method:'POST',
 
-
- setInterval(()=>{
-//getTrnxDetails()
- },1000)
+  body:JSON.stringify(dataToSend),
+  headers: { 'Content-Type': 'application/json' },
+})
+const updateRes=await fetch('/order/coins/update', {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ user, coins:Number(coins)+5 })
+});
+if(updateRes.status===200){
+  setCongrats(true)
 }
-
+ setTimeout(()=>{
+  
+  navigate('/success')
+},15000)
 }
 if(res.status!==200){
 return alert(`failed!your mpesa number might be wrong`) 
@@ -91,12 +108,15 @@ return alert(`failed!your mpesa number might be wrong`)
 }
 else{
 alert(`mpesa number wrong!`)
+
 }
 }}
 
 
 >Pay By Mpesa</Button>
+
 {trnx&&<Alert severity="success">Transaction was succesful!</Alert>}
+
 </Stack>
     </Stack>
     

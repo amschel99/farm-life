@@ -2,7 +2,7 @@ export const products=[
     {
         "name": "Fugo Dairy Meal, 50 kg",
         // "description": "Keep your plumbing and fittings secure with the galvanized iron sockets.\nPlace your order today and we\u2019ll deliver in just 2-4 days.\nPlace your order today and we\u2019ll deliver in just 2-4 days.\nKey Features:\n> Galvanized Iron\n> \u00bd inch",
-        "price": 2645,
+        "price": 1,
         "image": "https://imgs.search.brave.com/qaVvrm_4X7GT4Gkxd89D6vD7jvWadLpvbdyjmmB4rzw/rs:fit:615:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4x/UG43cXBGdXhZWmU1/eDJUZTByOEJnSGFG/dCZwaWQ9QXBp",
        
         "id": 1
