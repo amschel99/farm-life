@@ -8,14 +8,23 @@ const Success = ({ user }) => {
   const [name, setName] = useState('John Doe');
   const cart = useSelector((state) => state.cart);
   const { items } = cart;
-
+  const generateRandomString = (length) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = 'RD11';
+    for (let i = 0; i < length - 4; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+  
   const generatePdf = () => {
     const doc = new jsPDF();
 
     // Add receipt header
     doc.setFontSize(18);
     doc.text(`Receipt for ${user}`, 14, 22);
-    doc.text(`transaction Id RD1195TYTJZ`, 14, 28);
+    doc.text(`transaction Id ${generateRandomString(10)}`, 14, 28);
+
     // Add date
     doc.setFontSize(12);
     doc.text(`Date downloaded ${new Date().toLocaleDateString()}`, 14, 32);
@@ -34,13 +43,13 @@ const Success = ({ user }) => {
     // Add thank you message and contact details
     doc.setFontSize(12);
     doc.text('Thank you for your business!', 14, startY + 30);
-    doc.text('Contact us at 0797168636', 14, startY + 40);
+    doc.text('Contact us at 0792213201', 14, startY + 40);
 
     // Save the PDF
     doc.save('example.pdf');
   };
 
-  return <Button onClick={generatePdf}>Generate PDF</Button>;
+  return <Button onClick={generatePdf}>Download receipt</Button>;
 };
 
 export default Success;

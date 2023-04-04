@@ -2,9 +2,9 @@ const Account = require('../models/Account');
 
 const updateCoins = async (req, res) => {
   try {
-    const { user, coins } = req.body;
+    const { user, coins,points } = req.body;
     console.log(coins,user)
-    const updatedAccount = await Account.findOneAndUpdate({ user }, { coins });
+    const updatedAccount = await Account.findOneAndUpdate({ user }, { coins,points });
 
     if (!updatedAccount) {
       return res.status(404).json({ error: 'User not found' });

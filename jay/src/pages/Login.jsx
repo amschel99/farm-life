@@ -36,7 +36,7 @@ onClick={
      const {user}= await login(email,password)
      e.target.disabled=false
      setUser(user.email)
-     if(user.email==='kariukiamschel9@gmail.com'){
+     if(user.email==='victormunene21@gmail.com'){
      return navigate('/admin')
      }
    navigate("/")

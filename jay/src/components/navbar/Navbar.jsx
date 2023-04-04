@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import ShoppingCartItem from '../shoppingCart/ShoppingCart';
 import { MobileSearchBar } from '../searchBar/MobileSearch';
-const Navbar = ({productsData,setProductsData,user}) => {
+const Navbar = ({productsData,setProductsData,user,setUser}) => {
   const dispatch= useDispatch()
   const cart= useSelector((state)=>state.cart)
   const[open,setOpen]=useState(false)
@@ -50,7 +50,9 @@ const Navbar = ({productsData,setProductsData,user}) => {
               
               </button>
               </div>
-
+<div>
+  <Button onClick={()=>setUser(null)}>Logout</Button>
+</div>
         <Box sx={{display:{xs:"none",sm:"block"}}} className='srch'>
 
      <SearchBar productsData={productsData} setProductsData={setProductsData}/>

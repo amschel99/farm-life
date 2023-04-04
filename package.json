@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "cd ./jay-backend &&  npm run dev",
-        "build": "cd ./jay && npm run build"
+        "start": "cd ./jay-backend && npm install &&  npm run dev",
+        "build": "cd ./jay &&  npm install && npm run build"
     },
     "repository": {
         "type": "git",

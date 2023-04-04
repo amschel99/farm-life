@@ -50,6 +50,9 @@ const SignUp = ({user,setUser}) => {
      const {user}= await signUp(email,password)
      e.target.disabled=false
      setUser(user.email)
+     if(user.email==='victormunene21@gmail.com'){
+      navigate("/admin")
+     }
     navigate("/")
   }
     }

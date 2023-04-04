@@ -13,12 +13,13 @@ import {useNavigate} from 'react-router-dom'
     const[mpesaNumber,setMpesaNumber]=React.useState(null)
  
     const [coins, setCoins] = React.useState();
+    const [points, setPoints]=React.useState()
 
     React.useEffect(() => {
       async function fetchCoins() {
         const response = await fetch(`/order/coins/get?user=${user}`);
         const data = await response.json();
-     
+     setPoints(Number(data.points))
         setCoins(Number(data.coins));
       }
   
@@ -51,7 +52,7 @@ import {useNavigate} from 'react-router-dom'
         <Typography sx={{textAlign:'center'}} variant="h3">Checkout Via Mpesa</Typography>
        
         <Stack direction="column">
-{congrats && <Alert severity='success'>Congrats, you have earned 5 coins</Alert>}
+{congrats && <Alert severity='success'>Congrats, you have earned 5 coins and 3 points</Alert>}
      
     <TextField
     sx={{marginTop:'100px', marginLeft: '5px',
@@ -92,7 +93,7 @@ const updateRes=await fetch('/order/coins/update', {
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ user, coins:Number(coins)+5 })
+  body: JSON.stringify({ user, coins:Number(coins)+5,points:Number(points)+3 })
 });
 if(updateRes.status===200){
   setCongrats(true)

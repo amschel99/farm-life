@@ -10,7 +10,7 @@ const getCoins = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    return res.status(200).json({ coins: account.coins });
+    return res.status(200).json({ coins: account.coins, points:account.points });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error:err.message});
