@@ -32,7 +32,7 @@ const showFile=()=>{
     
     const formData = new FormData();
     if (fileInputRef.current.files[0]) {
-      formData.append("video", fileInputRef.current.files[0]);
+      formData.append("file", fileInputRef.current.files[0]);
       formData.append("name", ebook);
     } else {
       // Handle the case where no file has been selected
@@ -40,7 +40,7 @@ const showFile=()=>{
       setError("Please select a file to upload.");
       return;
     }
-    fetch("https://veestream.tech/video/upload", {
+    fetch("https://veestream.tech/file/upload", {
       method: "POST",
       headers: {
         apiKey: import.meta.env.VITE_API_KEY,

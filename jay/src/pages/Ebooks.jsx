@@ -10,7 +10,7 @@ const Ebooks = ({ user }) => {
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
-    const url = 'https://veestream.tech/videos';
+    const url = 'https://veestream.tech/files';
     const headers = { apiKey: import.meta.env.VITE_API_KEY };
     axios.get(url, { headers })
       .then((response) => {
